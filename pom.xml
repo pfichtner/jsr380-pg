@@ -80,7 +80,7 @@
 				</executions>
 				<configuration>
 					<initialization>
-						<entryPoint>REDEFINE</entryPoint>
+						<entryPoint>REBASE</entryPoint>
 					</initialization>
 					<transformations>
 						<transformation>

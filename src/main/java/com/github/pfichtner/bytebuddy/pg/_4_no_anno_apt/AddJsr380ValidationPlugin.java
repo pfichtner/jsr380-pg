@@ -1,7 +1,6 @@
 package com.github.pfichtner.bytebuddy.pg._4_no_anno_apt;
 
-import static net.bytebuddy.asm.Advice.to;
-import static net.bytebuddy.matcher.ElementMatchers.any;
+import static net.bytebuddy.matcher.ElementMatchers.isConstructor;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -10,6 +9,7 @@ import java.util.stream.Stream;
 
 import com.github.pfichtner.bytebuddy.pg.agent.Constructor;
 
+import net.bytebuddy.asm.Advice;
 import net.bytebuddy.build.Plugin;
 import net.bytebuddy.description.annotation.AnnotationDescription;
 import net.bytebuddy.description.annotation.AnnotationSource;
@@ -47,7 +47,7 @@ public class AddJsr380ValidationPlugin implements Plugin {
 
 	@Override
 	public Builder<?> apply(Builder<?> builder, TypeDescription typeDescription, ClassFileLocator classFileLocator) {
-		return builder.constructor(any()).intercept(to(Constructor.class));
+		return builder.visit(Advice.to(Constructor.class).on(isConstructor()));
 	}
 
 	@Override
