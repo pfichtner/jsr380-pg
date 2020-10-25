@@ -7,7 +7,7 @@ jdk:
   - openjdk-ea
 
 script:
-  - mvn verify
+  - mvn -X clean verify
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
